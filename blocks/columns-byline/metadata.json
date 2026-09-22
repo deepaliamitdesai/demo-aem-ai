@@ -1,0 +1,16 @@
+{
+  "variantName": "columns-byline",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "author-byline",
+    "imagePattern": "avatar",
+    "structure": "avatar + name + occupation | social-share links"
+  },
+  "contentPattern": "One row, two cells. Cell 1 = avatar image + author name + occupation. Cell 2 = social share links.",
+  "usage": "Author byline row at the end of a magazine article: author bio on one side, social share icons on the other.",
+  "options": [],
+  "memberVariantIds": ["columns-byline"]
+}

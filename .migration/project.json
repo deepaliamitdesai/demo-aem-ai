@@ -1,0 +1,11 @@
+{
+  "type": "da",
+  "sites": {
+    "demo-aem-ai": {
+      "previewOrg": "deepaliamitdesai",
+      "previewSite": "demo-aem-ai",
+      "contentHostUrl": "https://content.da.live/deepaliamitdesai/demo-aem-ai/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

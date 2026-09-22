@@ -1,0 +1,71 @@
+/* Related-articles "Up Next" list: single-column stack of title + date items. */
+
+/* Values extracted from source .cmp-list--upnext computed styles. */
+
+.cards-related ul {
+  list-style: none;
+  margin: 18px 0;
+  padding: 0;
+}
+
+.cards-related li {
+  margin: 0 0 18px;
+  padding: 0;
+}
+
+/* EDS wraps the standalone link in a <p> (button-container); flatten it. */
+.cards-related .cards-related-body p,
+.cards-related .cards-related-body .button-container {
+  margin: 0;
+  display: block;
+}
+
+/* Item link: grey accent bar on the left, no underline. */
+.cards-related .cards-related-body a,
+.cards-related .cards-related-body a.button:any-link {
+  display: block;
+  border-left: 5px solid rgb(235 235 235);
+  padding: 8px 16px;
+  margin: 0;
+  border-radius: 0;
+  background: none;
+  font: inherit;
+  text-decoration: none;
+  white-space: normal;
+}
+
+.cards-related .cards-related-body a:hover {
+  text-decoration: none;
+}
+
+/* Title line. */
+.cards-related-title {
+  display: block;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+/* Publish date line. */
+.cards-related-date {
+  display: block;
+  font-family: var(--body-font-family);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: rgb(105 105 105);
+}
+
+/* Optional image, if an author adds one to a card. */
+.cards-related-image {
+  line-height: 0;
+}
+
+.cards-related-image img {
+  width: 100%;
+  object-fit: cover;
+}

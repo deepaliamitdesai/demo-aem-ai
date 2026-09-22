@@ -1,0 +1,149 @@
+{
+  "templates": [
+    {
+      "name": "about-us",
+      "urls": [
+        "https://wknd.site/us/en/about-us.html",
+        "https://wknd.site/us/en/magazine.html"
+      ],
+      "representativeUrl": "https://wknd.site/us/en/about-us.html",
+      "description": "To be named in naming step",
+      "blocks": [],
+      "urlPattern": "/us/en/*"
+    },
+    {
+      "name": "adventures",
+      "urls": [
+        "https://wknd.site/us/en/adventures/climbing-new-zealand.html",
+        "https://wknd.site/us/en/adventures/west-coast-cycling.html"
+      ],
+      "representativeUrl": "https://wknd.site/us/en/adventures/climbing-new-zealand.html",
+      "description": "To be named in naming step",
+      "blocks": [],
+      "urlPattern": "/us/en/adventures/*"
+    },
+    {
+      "name": "adventures-2",
+      "urls": [
+        "https://wknd.site/us/en/adventures.html"
+      ],
+      "representativeUrl": "https://wknd.site/us/en/adventures.html",
+      "description": "To be named in naming step",
+      "blocks": [],
+      "urlPattern": "/us/en/*"
+    },
+    {
+      "name": "faqs",
+      "urls": [
+        "https://wknd.site/us/en/faqs.html"
+      ],
+      "representativeUrl": "https://wknd.site/us/en/faqs.html",
+      "description": "To be named in naming step",
+      "blocks": [],
+      "urlPattern": "/us/en/*"
+    },
+    {
+      "name": "home",
+      "urls": [
+        "https://wknd.site/us/en.html"
+      ],
+      "representativeUrl": "https://wknd.site/us/en.html",
+      "description": "To be named in naming step",
+      "blocks": [],
+      "urlPattern": "/us/*"
+    },
+    {
+      "name": "magazine",
+      "urls": [
+        "https://wknd.site/us/en/magazine/arctic-surfing.html",
+        "https://wknd.site/us/en/magazine/ski-touring.html"
+      ],
+      "representativeUrl": "https://wknd.site/us/en/magazine/arctic-surfing.html",
+      "description": "To be named in naming step",
+      "blocks": [
+        {
+          "name": "columns-byline",
+          "instances": [
+            ".cmp-byline"
+          ]
+        },
+        {
+          "name": "cards-related",
+          "instances": [
+            ".cmp-list--upnext"
+          ]
+        }
+      ],
+      "urlPattern": "/us/en/magazine/*",
+      "sections": [
+        {
+          "id": "sec1",
+          "name": "Lead image",
+          "selector": [
+            ".image.aem-GridColumn"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".image"
+          ]
+        },
+        {
+          "id": "sec2",
+          "name": "Breadcrumb",
+          "selector": [
+            ".breadcrumb.aem-GridColumn",
+            ".cmp-breadcrumb"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-breadcrumb"
+          ]
+        },
+        {
+          "id": "sec3",
+          "name": "Article body",
+          "selector": [
+            ".cmp-title",
+            "main.aem-GridColumn--default--8 > .cmp-container"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-title",
+            ".cmp-text"
+          ]
+        },
+        {
+          "id": "sec4",
+          "name": "Author byline",
+          "selector": [
+            ".cmp-byline"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-byline"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "sec5",
+          "name": "Related stories sidebar",
+          "selector": [
+            ".cmp-layoutcontainer--sidebar",
+            "aside.responsivegrid > .cmp-container"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-related"
+          ],
+          "defaultContent": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}
