@@ -9,7 +9,7 @@ body {
 .back-to-site {
     display: inline-block;
     margin: 15px;
-    color: #2563eb;
+    color: #166534;
     text-decoration: none;
     font-size: 14px;
     float: left;
@@ -20,7 +20,7 @@ body {
 }
 
 header {
-    background-color: #2563eb;
+    background-color: #166534;
     color: white;
     padding: 30px;
 }
@@ -43,7 +43,7 @@ img {
 
 button {
     padding: 10px 20px;
-    background-color: #2563eb;
+    background-color: #166534;
     color: white;
     border: none;
     border-radius: 5px;
@@ -51,7 +51,7 @@ button {
 }
 
 button:hover {
-    background-color: #1d4ed8;
+    background-color: #14532d;
 }
 
 footer {
