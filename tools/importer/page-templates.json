@@ -3,13 +3,64 @@
     {
       "name": "about-us",
       "urls": [
-        "https://wknd.site/us/en/about-us.html",
-        "https://wknd.site/us/en/magazine.html"
+        "https://wknd.site/us/en/about-us.html"
       ],
       "representativeUrl": "https://wknd.site/us/en/about-us.html",
-      "description": "To be named in naming step",
-      "blocks": [],
-      "urlPattern": "/us/en/*"
+      "description": "About Us page: contributor profile grids",
+      "blocks": [
+        {
+          "name": "cards-contributor",
+          "instances": [
+            ".cmp-experience-fragment--contributor"
+          ]
+        }
+      ],
+      "urlPattern": "/us/en/*",
+      "sections": [
+        {
+          "id": "sec1",
+          "name": "Page title",
+          "selector": [
+            ".title:not(.cmp-title--underline) .cmp-title",
+            "main > .cmp-container > .aem-Grid > .title:nth-of-type(1)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-title__text"
+          ]
+        },
+        {
+          "id": "sec2",
+          "name": "Our Contributors",
+          "selector": [
+            ".cmp-title--underline",
+            "main .cmp-title--underline:nth-of-type(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-contributor"
+          ],
+          "defaultContent": [
+            ".cmp-title--underline .cmp-title__text",
+            ".text.cmp-text--font-small"
+          ]
+        },
+        {
+          "id": "sec3",
+          "name": "WKND Guides",
+          "selector": [
+            "main .cmp-title--underline:nth-of-type(4)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-contributor"
+          ],
+          "defaultContent": [
+            ".cmp-title--underline .cmp-title__text"
+          ]
+        }
+      ]
     },
     {
       "name": "adventures",

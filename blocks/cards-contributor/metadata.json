@@ -1,0 +1,16 @@
+{
+  "variantName": "cards-contributor",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "comfortable",
+    "purpose": "contributor-profiles",
+    "imagePattern": "avatar",
+    "structure": "avatar + name + occupation + social links, repeating grid"
+  },
+  "contentPattern": "One row per contributor card, two cells: cell 1 = circular avatar image, cell 2 = name (heading) + occupation + row of social links.",
+  "usage": "Team/contributor profile grid, e.g. the 'Our Contributors' and 'WKND Guides' sections on an about page.",
+  "options": [],
+  "memberVariantIds": ["cards-contributor"]
+}

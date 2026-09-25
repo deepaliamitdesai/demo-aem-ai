@@ -4,6 +4,9 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+// folders holding standalone static pages, served only at their exact .html path
+const STATIC_PAGE_PREFIXES = ['/demo1/'];
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -136,6 +139,17 @@ export default async function decorate(block) {
     brandLink.className = '';
     brandLink.closest('.button-container').className = '';
   }
+
+  // the content pipeline strips ".html" from nav links; restore it for static pages
+  nav.querySelectorAll('a[href]').forEach((a) => {
+    const url = new URL(a.href);
+    if (url.origin === window.location.origin
+      && STATIC_PAGE_PREFIXES.some((prefix) => url.pathname.startsWith(prefix))
+      && !/\.[a-z0-9]+$/i.test(url.pathname)) {
+      url.pathname += '.html';
+      a.href = url.href;
+    }
+  });
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {

@@ -1,0 +1,56 @@
+/* Contributor profile grid: responsive columns of centered avatar cards. */
+.cards-contributor > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.cards-contributor > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Circular avatar. */
+.cards-contributor-image {
+  line-height: 0;
+}
+
+.cards-contributor-image img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cards-contributor-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Row of social icon links. */
+.cards-contributor-social {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+}
+
+@media (width >= 600px) {
+  .cards-contributor > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-contributor > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
