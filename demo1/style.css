@@ -43,7 +43,7 @@ img {
 
 button {
     padding: 10px 20px;
-    background-color: #166534;
+    background-color: #6b7280;
     color: white;
     border: none;
     border-radius: 5px;
@@ -51,7 +51,7 @@ button {
 }
 
 button:hover {
-    background-color: #14532d;
+    background-color: #4b5563;
 }
 
 footer {
