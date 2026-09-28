@@ -192,6 +192,16 @@
           "defaultContent": []
         }
       ]
+    },
+    {
+      "name": "demo",
+      "urls": [
+        "https://aem-20260922-1827--demo-aem-ai--deepaliamitdesai.aem.page/demo1/main.html"
+      ],
+      "representativeUrl": "https://aem-20260922-1827--demo-aem-ai--deepaliamitdesai.aem.page/demo1/main.html",
+      "description": "Standalone demo page imported as a DA page (default content only)",
+      "blocks": [],
+      "sections": []
     }
   ],
   "metadata": {
