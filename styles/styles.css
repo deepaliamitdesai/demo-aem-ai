@@ -31,6 +31,19 @@
   --heading-font-size-xs: var(--heading-size-xs);
 }
 
+/* fallback fonts, size-adjusted to the brand fonts' measured widths */
+@font-face {
+  font-family: asar-fallback;
+  size-adjust: 84.61%;
+  src: local('Georgia');
+}
+
+@font-face {
+  font-family: source-sans-pro-fallback;
+  size-adjust: 81.84%;
+  src: local('Arial');
+}
+
 body {
   display: none;
   margin: 0;
@@ -65,8 +78,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.75em;
-  margin-bottom: 0.375em;
+  margin-top: 27px;
+  margin-bottom: 13.5px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   line-height: 1.5;
@@ -76,15 +89,44 @@ h6 {
 h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
-h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
+
+/* section headings in page text get the WKND yellow underline */
+main .default-content-wrapper h2::after {
+  content: '';
+  display: block;
+  width: 84px;
+  padding-top: 8px;
+  border-bottom: 2px solid var(--brand-primary);
+}
 
 /* Author line / kicker headings are uppercase sans-serif on the source */
 h4 {
+  margin: 21.28px 0;
   font-family: var(--body-font-family);
   font-size: var(--heading-font-size-m);
   font-weight: 600;
   text-transform: uppercase;
+}
+
+/* small headings such as "Share this story" use the bold body font */
+h5 {
+  margin: 23.38px 0;
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: 600;
+}
+
+dl,
+ol,
+ul,
+pre {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+p {
+  margin: 0 0 13.5px;
 }
 
 blockquote {
@@ -93,14 +135,9 @@ blockquote {
   line-height: 1.5;
 }
 
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+/* body text is justified on the source */
+main .default-content-wrapper p {
+  text-align: justify;
 }
 
 code,
@@ -139,7 +176,12 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+a:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 2px;
+}
+
+/* buttons: square WKND style; a bold link is primary (yellow), an italic link is secondary (dark) */
 p.button-wrapper {
   margin: 12px 0;
 }
@@ -152,12 +194,14 @@ button.button {
   justify-content: center;
   max-width: 100%;
   margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
+  border: 0;
+  border-radius: 0;
+  padding: 16px 32px;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
@@ -165,107 +209,44 @@ button.button {
   white-space: nowrap;
 }
 
-a.button[aria-disabled="true"],
-button.button:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
+a.button:focus-visible,
+button.button:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
 }
 
+/* the source keeps the same colours on hover, so the variants have no hover rules */
 a.button.primary,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
-}
-
-a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
-}
-
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+  background-color: var(--brand-primary);
+  color: var(--text-color);
 }
 
 a.button.secondary,
 button.button.secondary {
-  border-color: var(--text-color);
-  background-color: transparent;
-  color: var(--text-color);
+  background-color: var(--text-color);
+  color: var(--light-grey-color);
 }
 
-a.button.secondary:hover,
-a.button.secondary:focus-visible,
-button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-/* high-impact call-to-action */
+/* high-impact call-to-action (bold and italic link) */
 a.button.accent,
 button.button.accent {
-  border-color: var(--link-color);
   background-color: var(--link-color);
   color: var(--background-color);
 }
 
 a.button.accent:hover,
-a.button.accent:focus-visible,
-button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
+button.button.accent:hover {
   background-color: var(--link-hover-color);
+  color: var(--background-color);
 }
 
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
+a.button[aria-disabled="true"],
+button.button:disabled {
   background-color: var(--light-color);
-  border-color: var(--light-color);
   color: var(--dark-color);
-}
-
-/* EDS button reset — source renders inline text links, not pill buttons */
-main .button-container { display: inline; }
-
-main a.button:any-link {
-  background: none;
-  border: none;
-  border-radius: 0;
-  color: var(--link-color);
-  font-size: inherit;
-  font-weight: inherit;
-  padding: 0;
-  margin: 0;
-  text-decoration: underline;
-  white-space: normal;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 main img {
@@ -285,24 +266,56 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/* sections: no extra spacing between them, as on the WKND source */
 main > .section {
-  margin: 40px 0;
+  margin: 0;
 }
 
+/* 1136px content column, as on the WKND source */
 main > .section > div {
-  max-width: 1200px;
+  max-width: 1136px;
   margin: auto;
   padding: 0 24px;
-}
-
-main > .section:first-of-type {
-  margin-top: 0;
 }
 
 @media (width >= 900px) {
   main > .section > div {
     padding: 0 32px;
+  }
+}
+
+/*
+ * Magazine article pages (recognised by their related-stories sidebar): the source
+ * 12-column grid puts the article and byline in 8 columns and the sidebar in 3,
+ * side by side. Dense placement lifts the sidebar up next to the article.
+ */
+@media (width >= 1200px) {
+  main:has(> .cards-related-container) {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 776px) minmax(0, 97px) minmax(0, 291px) 1fr;
+    grid-auto-flow: row dense;
+    align-content: start;
+  }
+
+  main:has(> .cards-related-container) > .section {
+    grid-column: 1 / -1;
+  }
+
+  main:has(> .cards-related-container) > .section:has(+ .columns-byline-container),
+  main:has(> .cards-related-container) > .columns-byline-container {
+    grid-column: 2;
+  }
+
+  main:has(> .cards-related-container) > .cards-related-container {
+    grid-column: 4;
+    grid-row: span 2;
+  }
+
+  main:has(> .cards-related-container) > .columns-byline-container > div,
+  main:has(> .cards-related-container) > .cards-related-container > div,
+  main:has(> .cards-related-container) > .section:has(+ .columns-byline-container) > div {
+    max-width: none;
+    padding: 0 14px;
   }
 }
 

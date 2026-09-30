@@ -1,56 +1,176 @@
-/* Contributor profile grid: responsive columns of centered avatar cards. */
+/*
+ * Contributor profile card: centered circular avatar, name, occupation and a
+ * row of square social buttons. Values extracted from the WKND source
+ * (.cmp-experience-fragment--contributor).
+ *
+ * Authors add one block per contributor, so consecutive single-card blocks in
+ * a section are laid out side by side by turning the section into a grid.
+ */
+
+/* ---------- section grid (only sections holding contributor cards) ---------- */
+
+/* page gutter (24px) minus the 14px card gutter the source grid adds */
+main > .section.cards-contributor-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline: 10px;
+}
+
+main > .section.cards-contributor-container > div {
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 14px;
+}
+
+main > .section.cards-contributor-container > .cards-contributor-wrapper {
+  grid-column: auto;
+  padding: 0;
+}
+
+/* a block authored with several rows spans the whole row and grids itself */
+main > .section.cards-contributor-container > .cards-contributor-wrapper:has(li + li) {
+  grid-column: 1 / -1;
+}
+
+/* ---------- card ---------- */
+
 .cards-contributor > ul {
-  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
+  list-style: none;
 }
 
 .cards-contributor > ul > li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 9px 28px 18px;
+  color: var(--text-color);
   text-align: center;
 }
 
-/* Circular avatar. */
-.cards-contributor-image {
+/* circular avatar */
+.cards-contributor .cards-contributor-image {
   line-height: 0;
 }
 
-.cards-contributor-image img {
-  width: 160px;
-  height: 160px;
+.cards-contributor .cards-contributor-image img {
+  display: block;
+  width: 164px;
+  height: 164px;
+  margin: 7px auto 14px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.cards-contributor-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+/* name */
+.cards-contributor .cards-contributor-body h3 {
+  margin: 0 0 6px;
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  color: var(--text-color);
 }
 
-/* Row of social icon links. */
-.cards-contributor-social {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 8px;
+/* occupation */
+.cards-contributor .cards-contributor-body h5 {
+  margin: 0 0 3.5px;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.cards-contributor .cards-contributor-body p {
   margin: 0;
 }
 
-@media (width >= 600px) {
-  .cards-contributor > ul {
-    grid-template-columns: repeat(2, 1fr);
+/* row of square social buttons */
+.cards-contributor p.cards-contributor-social {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 0;
+  padding-top: 18px;
+  line-height: 0;
+}
+
+/* the source glyph sits 18px from the top and 14px from the left, not centered */
+.cards-contributor .cards-contributor-social a:any-link,
+.cards-contributor .cards-contributor-social a:hover {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  padding: 18px 0 0 14px;
+  border-radius: 0;
+  background-color: var(--text-color);
+  color: var(--light-grey-color);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  text-decoration: none;
+}
+
+.cards-contributor .cards-contributor-social-icon {
+  display: block;
+  width: auto;
+  height: 17.5px;
+  fill: currentcolor;
+}
+
+.cards-contributor .cards-contributor-social-icon-twitter {
+  width: 21.875px;
+  height: auto;
+}
+
+.cards-contributor .cards-contributor-social-abbr {
+  text-transform: uppercase;
+}
+
+/* authored text kept for assistive tech only */
+.cards-contributor .cards-contributor-social-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* source grid: 1 column on phones, 2 on tablets (768-1199px), 4 on desktop */
+@media (width >= 768px) {
+  main > .section.cards-contributor-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cards-contributor > ul:has(li + li) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
+/* 1164px source grid: the 1136px content column plus a 14px card gutter */
 @media (width >= 900px) {
-  .cards-contributor > ul {
-    grid-template-columns: repeat(4, 1fr);
+  main > .section.cards-contributor-container {
+    padding-inline: max(18px, calc((100% - 1164px) / 2));
+  }
+}
+
+@media (width >= 1200px) {
+  main > .section.cards-contributor-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .cards-contributor > ul:has(li + li) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
