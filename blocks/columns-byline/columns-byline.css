@@ -4,10 +4,14 @@
  * its right; a hairline divider sits above the byline. */
 
 /* Divider that appears above the byline (source: separate separator
- * component, border-top 1px solid rgb(235, 235, 235)). */
+ * component, border-top 1px solid rgb(235, 235, 235)). The source
+ * .cmp-separator has 64px margin above and below its 2px rule, so the rule
+ * sits 64px past the article's last paragraph margin and the author name
+ * starts 66px below the rule's top edge (1px border + 65px padding). */
 .columns-byline {
+  margin-top: 64px;
   border-top: 1px solid rgb(235 235 235);
-  padding-top: 40px;
+  padding-top: 65px;
 }
 
 .columns-byline > div {

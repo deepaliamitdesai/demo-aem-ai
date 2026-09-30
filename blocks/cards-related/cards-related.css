@@ -2,7 +2,20 @@
 
 /* Values extracted from source .cmp-list--upnext computed styles. */
 
+/*
+ * Source list column: padding 32px 14px 0 (the 14px sides come from the sidebar
+ * section padding here). The 23.38px top margin is the source heading's bottom
+ * margin; it collapses with the preceding heading's own margin, so the first card
+ * sits 73.4px below "Share this story" as on the source.
+ */
+.cards-related {
+  margin-top: 23.38px;
+  padding: 32px 0 0;
+}
+
+/* flow-root keeps the last item's 18px margin inside the list, like the source's floated list */
 .cards-related ul {
+  display: flow-root;
   list-style: none;
   margin: 18px 0;
   padding: 0;
@@ -24,12 +37,16 @@
 .cards-related .cards-related-body a,
 .cards-related .cards-related-body a.button:any-link {
   display: block;
+  box-sizing: content-box;
+  height: 120px;
   border-left: 5px solid rgb(235 235 235);
   padding: 8px 16px;
   margin: 0;
   border-radius: 0;
   background: none;
   font: inherit;
+  font-weight: 400;
+  line-height: 27px;
   text-decoration: none;
   white-space: normal;
 }
@@ -41,6 +58,9 @@
 /* Title line. */
 .cards-related-title {
   display: block;
+  box-sizing: content-box;
+  width: 100%;
+  padding: 5px;
   font-family: var(--body-font-family);
   font-size: 18px;
   font-weight: 400;
@@ -52,6 +72,9 @@
 /* Publish date line. */
 .cards-related-date {
   display: block;
+  box-sizing: content-box;
+  width: 100%;
+  padding: 5px;
   font-family: var(--body-font-family);
   font-size: 12px;
   font-weight: 400;

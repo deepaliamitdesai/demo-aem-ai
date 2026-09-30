@@ -78,8 +78,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.75em;
-  margin-bottom: 0.375em;
+  margin-top: 27px;
+  margin-bottom: 13.5px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   line-height: 1.5;
@@ -89,7 +89,6 @@ h6 {
 h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
-h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
 
 /* section headings in page text get the WKND yellow underline */
@@ -103,10 +102,31 @@ main .default-content-wrapper h2::after {
 
 /* Author line / kicker headings are uppercase sans-serif on the source */
 h4 {
+  margin: 21.28px 0;
   font-family: var(--body-font-family);
   font-size: var(--heading-font-size-m);
   font-weight: 600;
   text-transform: uppercase;
+}
+
+/* small headings such as "Share this story" use the bold body font */
+h5 {
+  margin: 23.38px 0;
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: 600;
+}
+
+dl,
+ol,
+ul,
+pre {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+p {
+  margin: 0 0 13.5px;
 }
 
 blockquote {
@@ -115,14 +135,9 @@ blockquote {
   line-height: 1.5;
 }
 
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+/* body text is justified on the source */
+main .default-content-wrapper p {
+  text-align: justify;
 }
 
 code,
@@ -251,9 +266,9 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/* sections: no extra spacing between them, as on the WKND source */
 main > .section {
-  margin: 40px 0;
+  margin: 0;
 }
 
 /* 1136px content column, as on the WKND source */
@@ -263,13 +278,44 @@ main > .section > div {
   padding: 0 24px;
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
-}
-
 @media (width >= 900px) {
   main > .section > div {
     padding: 0 32px;
+  }
+}
+
+/*
+ * Magazine article pages (recognised by their related-stories sidebar): the source
+ * 12-column grid puts the article and byline in 8 columns and the sidebar in 3,
+ * side by side. Dense placement lifts the sidebar up next to the article.
+ */
+@media (width >= 1200px) {
+  main:has(> .cards-related-container) {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 776px) minmax(0, 97px) minmax(0, 291px) 1fr;
+    grid-auto-flow: row dense;
+    align-content: start;
+  }
+
+  main:has(> .cards-related-container) > .section {
+    grid-column: 1 / -1;
+  }
+
+  main:has(> .cards-related-container) > .section:has(+ .columns-byline-container),
+  main:has(> .cards-related-container) > .columns-byline-container {
+    grid-column: 2;
+  }
+
+  main:has(> .cards-related-container) > .cards-related-container {
+    grid-column: 4;
+    grid-row: span 2;
+  }
+
+  main:has(> .cards-related-container) > .columns-byline-container > div,
+  main:has(> .cards-related-container) > .cards-related-container > div,
+  main:has(> .cards-related-container) > .section:has(+ .columns-byline-container) > div {
+    max-width: none;
+    padding: 0 14px;
   }
 }
 
