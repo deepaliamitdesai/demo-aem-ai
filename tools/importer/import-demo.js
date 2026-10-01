@@ -45,6 +45,14 @@ export default {
     const hr = document.createElement('hr');
     main.appendChild(hr);
     WebImporter.rules.createMetadata(main, document);
+    // The demo template keeps the page out of the site-wide WKND design.
+    const metadata = [...main.querySelectorAll('table')]
+      .find((table) => table.querySelector('th, td')?.textContent.trim() === 'Metadata');
+    if (metadata) {
+      const row = document.createElement('tr');
+      row.innerHTML = '<td>template</td><td>demo</td>';
+      (metadata.querySelector('tbody') || metadata).append(row);
+    }
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 

@@ -47,7 +47,6 @@ var CustomImportScript = (() => {
     if (hookName !== "beforeTransform") return;
     const { document } = payload;
     WebImporter.DOMUtils.remove(element, [".back-to-site", "script", "link", "style", "noscript"]);
-    element.querySelectorAll("header, footer").forEach((el) => el.replaceWith(...el.childNodes));
     element.querySelectorAll("button").forEach((button) => {
       const p = document.createElement("p");
       const strong = document.createElement("strong");
@@ -55,6 +54,17 @@ var CustomImportScript = (() => {
       p.append(strong);
       button.replaceWith(p);
     });
+    [["header", "demo-hero"], ["main", "demo-card"], ["footer", "demo-footer"]].forEach(([selector, style]) => {
+      const part = element.querySelector(`:scope > ${selector}`);
+      if (!part) return;
+      const sectionMetadata = WebImporter.Blocks.createBlock(document, {
+        name: "Section Metadata",
+        cells: { style }
+      });
+      part.replaceWith(...part.childNodes, sectionMetadata, document.createElement("hr"));
+    });
+    const last = element.lastElementChild;
+    if (last && last.tagName === "HR") last.remove();
     element.querySelectorAll("img[src]").forEach((img) => {
       img.setAttribute("src", new URL(img.getAttribute("src"), ASSET_BASE).href);
     });
@@ -90,6 +100,15 @@ var CustomImportScript = (() => {
       const hr = document.createElement("hr");
       main.appendChild(hr);
       WebImporter.rules.createMetadata(main, document);
+      const metadata = [...main.querySelectorAll("table")].find((table) => {
+        var _a;
+        return ((_a = table.querySelector("th, td")) == null ? void 0 : _a.textContent.trim()) === "Metadata";
+      });
+      if (metadata) {
+        const row = document.createElement("tr");
+        row.innerHTML = "<td>template</td><td>demo</td>";
+        (metadata.querySelector("tbody") || metadata).append(row);
+      }
       WebImporter.rules.transformBackgroundImages(main, document);
       WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
       const rawPath = new URL(params.originalURL).pathname.replace(/\/$/, "").replace(/\.html?$/, "").replace(/^\/demo1\/main$/, "/demo");
