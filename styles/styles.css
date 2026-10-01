@@ -29,6 +29,15 @@
   --heading-font-size-m: var(--heading-size-m);
   --heading-font-size-s: var(--heading-size-s);
   --heading-font-size-xs: var(--heading-size-xs);
+
+  /* fixed WKND header: 25px utility bar + 92px main bar (169px on desktop) */
+  --nav-height: 117px;
+}
+
+@media (width >= 1200px) {
+  :root {
+    --nav-height: 194px;
+  }
 }
 
 /* fallback fonts, size-adjusted to the brand fonts' measured widths */
