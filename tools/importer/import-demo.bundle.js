@@ -46,7 +46,20 @@ var CustomImportScript = (() => {
   function transform(hookName, element, payload) {
     if (hookName !== "beforeTransform") return;
     const { document } = payload;
-    WebImporter.DOMUtils.remove(element, [".back-to-site", "script", "link", "style", "noscript"]);
+    WebImporter.DOMUtils.remove(element, ["script", "link", "style", "noscript"]);
+    const back = element.querySelector(":scope > .back-to-site");
+    if (back) {
+      const p = document.createElement("p");
+      const link = document.createElement("a");
+      link.href = "/";
+      link.textContent = back.textContent.trim();
+      p.append(link);
+      const sectionMetadata = WebImporter.Blocks.createBlock(document, {
+        name: "Section Metadata",
+        cells: { style: "demo-back" }
+      });
+      back.replaceWith(p, sectionMetadata, document.createElement("hr"));
+    }
     element.querySelectorAll("button").forEach((button) => {
       const p = document.createElement("p");
       const strong = document.createElement("strong");

@@ -389,6 +389,21 @@ body.demo main > .section > div {
   padding: 0;
 }
 
+/* "Back to site" link above the heading band */
+body.demo main > .section.demo-back {
+  padding: 15px;
+  font-size: 14px;
+  text-align: left;
+}
+
+body.demo main .demo-back .default-content-wrapper p {
+  margin: 0;
+}
+
+body.demo main .demo-back a:any-link {
+  color: #166534;
+}
+
 /* green heading band */
 body.demo main > .section.demo-hero {
   padding: 30px;

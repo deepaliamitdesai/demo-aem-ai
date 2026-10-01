@@ -11,8 +11,23 @@ export default function transform(hookName, element, payload) {
   if (hookName !== 'beforeTransform') return;
   const { document } = payload;
 
-  // The DA page gets the site nav, so the standalone "Back to site" link is redundant.
-  WebImporter.DOMUtils.remove(element, ['.back-to-site', 'script', 'link', 'style', 'noscript']);
+  WebImporter.DOMUtils.remove(element, ['script', 'link', 'style', 'noscript']);
+
+  // The demo template renders without the site nav, so keep the "Back to site" link
+  // as its own small section above the heading band.
+  const back = element.querySelector(':scope > .back-to-site');
+  if (back) {
+    const p = document.createElement('p');
+    const link = document.createElement('a');
+    link.href = '/';
+    link.textContent = back.textContent.trim();
+    p.append(link);
+    const sectionMetadata = WebImporter.Blocks.createBlock(document, {
+      name: 'Section Metadata',
+      cells: { style: 'demo-back' },
+    });
+    back.replaceWith(p, sectionMetadata, document.createElement('hr'));
+  }
 
   // The button has no action on the source page; keep its label as bold text.
   element.querySelectorAll('button').forEach((button) => {
