@@ -29,6 +29,15 @@
   --heading-font-size-m: var(--heading-size-m);
   --heading-font-size-s: var(--heading-size-s);
   --heading-font-size-xs: var(--heading-size-xs);
+
+  /* fixed WKND header: 25px utility bar + 92px main bar (169px on desktop) */
+  --nav-height: 117px;
+}
+
+@media (width >= 1200px) {
+  :root {
+    --nav-height: 194px;
+  }
 }
 
 /* fallback fonts, size-adjusted to the brand fonts' measured widths */
@@ -325,4 +334,117 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/*
+ * Demo template (Template: demo): the standalone demo page keeps its own look
+ * instead of the site-wide WKND design. The site header and footer are unchanged.
+ */
+body.demo {
+  background-color: #f2f2f2;
+}
+
+body.demo main {
+  color: #333;
+  font-family: arial, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+  text-align: center;
+}
+
+body.demo main h1,
+body.demo main h2 {
+  font-family: inherit;
+  font-weight: 700;
+  line-height: normal;
+}
+
+body.demo main h1 {
+  margin: 0.67em 0;
+  font-size: 2em;
+}
+
+body.demo main h2 {
+  margin: 0.83em 0;
+  font-size: 1.5em;
+}
+
+body.demo main .default-content-wrapper h2::after {
+  content: none;
+}
+
+body.demo main .default-content-wrapper p {
+  margin: 1em 0;
+  text-align: inherit;
+}
+
+body.demo main img {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+body.demo main > .section > div {
+  max-width: none;
+  padding: 0;
+}
+
+/* "Back to site" link above the heading band */
+body.demo main > .section.demo-back {
+  padding: 15px;
+  font-size: 14px;
+  text-align: left;
+}
+
+body.demo main .demo-back .default-content-wrapper p {
+  margin: 0;
+}
+
+body.demo main .demo-back a:any-link {
+  color: #166534;
+}
+
+/* green heading band */
+body.demo main > .section.demo-hero {
+  padding: 30px;
+  background-color: #166534;
+  color: #fff;
+}
+
+/* white content card */
+body.demo main > .section.demo-card {
+  width: 80%;
+  max-width: 600px;
+  margin: 30px auto;
+  border-radius: 10px;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+body.demo main .demo-card .default-content-wrapper > p:first-child {
+  margin-top: 0;
+}
+
+body.demo main .demo-card .default-content-wrapper > p:last-child {
+  margin-bottom: 0;
+}
+
+/* the bold "Click Me" label looks like the demo's grey button */
+body.demo main .demo-card p > strong:only-child {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #6b7280;
+  color: #fff;
+  font-size: 13.33px;
+  font-weight: 400;
+}
+
+/* dark copyright bar */
+body.demo main > .section.demo-footer {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #222;
+  color: #fff;
 }
