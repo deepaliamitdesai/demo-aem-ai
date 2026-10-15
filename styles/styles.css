@@ -430,6 +430,12 @@ body.demo main .demo-card .default-content-wrapper > p:last-child {
   margin-bottom: 0;
 }
 
+/* a wide image after the button (the arrow banner) spans the card */
+body.demo main .demo-card p:has(> strong:only-child) + p img {
+  width: 100%;
+  border-radius: 0;
+}
+
 /* the bold "Click Me" label looks like the demo's grey button */
 body.demo main .demo-card p > strong:only-child {
   display: inline-block;

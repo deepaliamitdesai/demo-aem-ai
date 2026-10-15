@@ -67,6 +67,15 @@ var CustomImportScript = (() => {
       p.append(strong);
       button.replaceWith(p);
     });
+    const buttonLabel = [...element.querySelectorAll("p > strong:only-child")].find((strong) => strong.textContent.trim() === "Click Me");
+    if (buttonLabel) {
+      const p = document.createElement("p");
+      const img = document.createElement("img");
+      img.setAttribute("src", "arrowBg.png");
+      img.setAttribute("alt", "Arrow banner");
+      p.append(img);
+      buttonLabel.parentElement.after(p);
+    }
     [["header", "demo-hero"], ["main", "demo-card"], ["footer", "demo-footer"]].forEach(([selector, style]) => {
       const part = element.querySelector(`:scope > ${selector}`);
       if (!part) return;

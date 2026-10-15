@@ -38,6 +38,18 @@ export default function transform(hookName, element, payload) {
     button.replaceWith(p);
   });
 
+  // The DA page shows the arrow banner from the demo folder right after the button.
+  const buttonLabel = [...element.querySelectorAll('p > strong:only-child')]
+    .find((strong) => strong.textContent.trim() === 'Click Me');
+  if (buttonLabel) {
+    const p = document.createElement('p');
+    const img = document.createElement('img');
+    img.setAttribute('src', 'arrowBg.png');
+    img.setAttribute('alt', 'Arrow banner');
+    p.append(img);
+    buttonLabel.parentElement.after(p);
+  }
+
   // The demo's own <header>/<main>/<footer> hold page text (heading, tagline, copyright): keep
   // each as its own section, styled by the demo template (green band, white card, dark bar).
   [['header', 'demo-hero'], ['main', 'demo-card'], ['footer', 'demo-footer']].forEach(([selector, style]) => {
